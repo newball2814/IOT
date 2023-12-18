@@ -3,8 +3,8 @@
 from uart import *
 from MQTT import *
 
-# from predictAI import *
 # import threading
+# from predictV3 import *
 import sys
 import time
 
@@ -13,16 +13,16 @@ INIT = 0
 MCU_CONNECTED = 1
 MCU_DISCONNECTED = 2
 state = INIT
-HOPELESS=99
+HOPELESS = 99
 curTime = time.process_time()
 aiTime = time.process_time()
-WAIT = 5      
+WAIT = 15      
 predictTime = time.process_time()
 time.sleep(WAIT)
 
 # Make prediction run seperately cuz Adafruit throtlle :v
 # predictAIevent = threading.Event()
-# predictAIThread = threading.Thread(target=lambda:predictionMainloop(predictAIevent))
+# predictAIThread = threading.Thread(target=lambda:predictionMainloop())
 # predictAIThread.start()
         
 while True:  
@@ -38,5 +38,5 @@ while True:
         sys.exit(1)
 
     sendPeriod = getSendPeriod()
-    state=readSerial(client)
+    state = readSerial(client)
     pass

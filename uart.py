@@ -8,10 +8,10 @@ MCUfirmwareVer = ''
 curTime = time.process_time()
 
 numOfConnectionTry = 0
-INIT=0
-MCU_CONNECTED=1
-MCU_DISCONNECTED=2
-MCU_MAX_CONNECT_ATTEMP=3
+INIT = 0
+MCU_CONNECTED = 1
+MCU_DISCONNECTED = 2
+MCU_MAX_CONNECT_ATTEMP = 3
 prevTemp = 0
 prevHumid = 0
 currentTemp = 0
@@ -51,7 +51,7 @@ def connectAttemp(state, client):
 
     while numOfConnectionTry < MCU_MAX_CONNECT_ATTEMP and state != MCU_CONNECTED:
         if time.process_time()-curTime > 3: 
-            print('MCU Connect Attempt Number:'+str(numOfConnectionTry))
+            print('MCU Connect Attempt Number: ' + str(numOfConnectionTry))
             state = connectSerial()
             if state == INIT or state == MCU_DISCONNECTED:
                 numOfConnectionTry = numOfConnectionTry+1
@@ -70,16 +70,16 @@ def getIsCollectedData():
     return isCollectedData
 
 def getPort():
-    ports = serial.tools.list_ports.comports()
-    N = len(ports)
-    commPort = "None"
-    for i in range(0, N):
-        port = ports[i]
-        strPort = str(port)
-        if "ttyACM" in strPort:
-            splitPort = strPort.split(" ")
-            commPort = (splitPort[0])
-        print("/dev/ttyACM0")
+    # ports = serial.tools.list_ports.comports()
+    # N = len(ports)
+    # commPort = "None"
+    # for i in range(0, N):
+        # port = ports[i]
+        # strPort = str(port)
+        # if "ttyACM" in strPort:
+        #     splitPort = strPort.split(" ")
+            # commPort = (splitPort[0])
+        # print("/dev/ttyACM0")
     return "/dev/ttyACM0" 
 
 def connectSerial():
